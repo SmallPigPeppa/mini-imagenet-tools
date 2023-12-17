@@ -105,6 +105,13 @@ class MiniImageNetGenerator(object):
                     index_sorted = sorted(range(len(lst_index)), key=lst_index.__getitem__)
 
                     index_selected = [int(i[i.index('.') - 4:i.index('.')]) for i in images[cls]]
+
+
+
+                    print(f"Class: {cls}, Number of files found: {len(lst_files)}")
+                    print(f"Index sorted: {index_sorted}")
+                    print(f"Index selected: {index_selected}")
+
                     selected_images = np.array(index_sorted)[np.array(index_selected) - 1]
                     for i in np.arange(len(selected_images)):
                         if self.image_resize == 0:
@@ -118,5 +125,5 @@ class MiniImageNetGenerator(object):
 
 if __name__ == "__main__":
     dataset_generator = MiniImageNetGenerator(args)
-    # dataset_generator.untar_mini()
+    dataset_generator.untar_mini()
     dataset_generator.process_original_files()
