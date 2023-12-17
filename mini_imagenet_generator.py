@@ -16,6 +16,7 @@ import glob
 # import cv2
 from shutil import copyfile
 from tqdm import tqdm
+import shutil
 
 # argument parser
 parser = argparse.ArgumentParser(description='')
@@ -65,6 +66,19 @@ class MiniImageNetGenerator(object):
             print('Untarring ' + keys)
             os.system('tar xvf ' + self.imagenet_dir + '/' + keys + '.tar -C ' + self.mini_dir)
         print('All the tar files are untarred')
+
+        def copy_mini(self):
+            self.mini_keys = ['n02110341', 'n01930112', 'n04509417', 'n04067472', 'n04515003', ...]  # 省略其他类别以简化显示
+
+            for idx, key in enumerate(self.mini_keys):
+                source_dir = os.path.join(self.imagenet_dir, key)
+                dest_dir = os.path.join(self.mini_dir, key)
+                print(f'Copying {key}...')
+                if os.path.exists(source_dir):
+                    shutil.copytree(source_dir, dest_dir)
+                else:
+                    print(f"Warning: Source directory {source_dir} does not exist.")
+            print('All specified classes have been copied.')
 
     def process_original_files(self):
         self.processed_img_dir = './processed_images'
