@@ -13,7 +13,7 @@ import os
 import numpy as np
 import csv
 import glob
-import cv2
+# import cv2
 from shutil import copyfile
 from tqdm import tqdm
 
